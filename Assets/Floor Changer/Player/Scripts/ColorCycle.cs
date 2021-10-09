@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ColorCycle : MonoBehaviour
 {
@@ -7,6 +9,40 @@ public class ColorCycle : MonoBehaviour
     public Vector3[] colorSelectPOS;
     public Vector3[] colorSelectSCALE;
     public RectTransform[] colorSelectUI;
+
+    private InputActions input;
+    private InputAction inputAction;
+
+    RaycastHit hit;
+    bool rayHit;
+
+    private void Awake()
+    {
+        input = new InputActions();
+    }
+
+    private void OnEnable()
+    {
+        inputAction = input.Player.ColorCycle;
+        inputAction.Enable();
+
+        input.Player.ColorCycle.performed += Cycle;
+        input.Player.ColorCycle.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputAction.Disable();
+        input.Player.ColorCycle.Disable();
+    }
+
+    private void Cycle(InputAction.CallbackContext obj)
+    {
+        if (color < 4)
+            color++;
+        else
+            color = 1;
+    }
 
     private void Update()
     {
@@ -24,10 +60,7 @@ public class ColorCycle : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            if (color < 4)
-                color++;
-            else
-                color = 1;
+            
         }
     }
 }

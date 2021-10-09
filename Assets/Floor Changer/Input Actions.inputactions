@@ -1,0 +1,71 @@
+{
+    "name": "Input Actions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "9fb6b685-0e2b-4157-b1c2-3b81ee8ceef6",
+            "actions": [
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "f9ab3e8c-ad46-4950-849a-c8add51e2bcd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Color Cycle",
+                    "type": "Button",
+                    "id": "d514492d-a45f-45fe-a0fb-2939f57a835f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Middle Mouse",
+                    "type": "Button",
+                    "id": "4cc1fa8f-cdfc-4084-8d66-2bbd440ac02d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a5dc716e-aabf-4a27-baf2-e518e31c12d2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c83c996f-f89f-4644-b370-82dfeb5437c9",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Color Cycle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c63c5013-603f-4dd8-81a3-446ddb713551",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Middle Mouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RobotAI : MonoBehaviour
 {
@@ -19,6 +21,42 @@ public class RobotAI : MonoBehaviour
     Vector3 newPos;
 
     public float movementSpeed = .3f;
+
+    RaycastHit hit;
+
+    private InputActions input;
+    private InputAction inputAction;
+
+    private void Awake()
+    {
+        input = new InputActions();
+    }
+
+    private void OnEnable()
+    {
+        inputAction = input.Player.ColorCycle;
+        inputAction.Enable();
+
+        input.Player.MiddleMouse.performed += Move;
+        input.Player.MiddleMouse.Enable();
+    }
+
+    private void Move(InputAction.CallbackContext obj)
+    {
+        if (Physics.Raycast(cam.transform.position, cam.forward, out hit))
+        {
+            newPos.x = hit.point.x;
+            newPos.z = hit.point.z;
+            temp.position = new Vector3(newPos.x, temp.position.y, newPos.z);
+        }
+    }
+
+    private void OnDisable()
+    {
+        inputAction.Disable();
+        input.Player.MiddleMouse.Disable();
+    }
+
 
     private void Start()
     {
@@ -42,15 +80,9 @@ public class RobotAI : MonoBehaviour
         cc.Move(velocity * Time.deltaTime);
 
         transform.position = Vector3.Lerp(transform.position, new Vector3(newPos.x, transform.position.y, newPos.z), movementSpeed * Time.deltaTime);
-        RaycastHit hit;
         if (Input.GetMouseButtonDown(2) && cc.velocity.y == 0f)
         {
-            if (Physics.Raycast(cam.transform.position, cam.forward, out hit))
-            {
-                newPos.x = hit.point.x;
-                newPos.z = hit.point.z;
-                temp.position = new Vector3(newPos.x, temp.position.y, newPos.z);
-            }
+            
         }
     }
 
