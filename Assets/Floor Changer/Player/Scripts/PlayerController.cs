@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     public float rotSpeed = 1f;
 
+    GameObject changeable;
+
     private void Start()
     {
         cc = GetComponent<CharacterController>();
@@ -65,6 +67,11 @@ public class PlayerController : MonoBehaviour
             else if (hit.transform.GetComponent<FloorScript>().color == 3 && hit.transform.GetComponent<TriggerFloor>())
                 hit.transform.GetComponent<TriggerFloor>().start = true;
 
+            changeable = hit.gameObject;
+        }
+        else if (changeable.transform.GetComponent<TriggerFloor>())
+        {
+            changeable.transform.GetComponent<TriggerFloor>().start = false;
         }
     }
 }
